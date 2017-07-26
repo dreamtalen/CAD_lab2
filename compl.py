@@ -56,31 +56,21 @@ def negativeCofactor(cubelist_f, x):
     return result
 
 def and_x(x, cubelist):
-    try:
-        for cube in cubelist:
-            cube[x] = [False, True]
-    except:
-        cubelist = [cubelist]
-        for cube in cubelist:
-            cube[x] = [False, True]
+    for cube in cubelist:
+        cube[x] = [False, True]
     return cubelist
 
 def and_x_bar(x, cubelist):
-    try:
-        for cube in cubelist:
-            cube[x] = [True, False]
-    except:
-        cubelist = [cubelist]
-        for cube in cubelist:
-            cube[x] = [True, False]
+    for cube in cubelist:
+        cube[x] = [True, False]
     return cubelist
 
 def Complement(cubelist_f, var_num):
     # Empty cube list
     if not cubelist_f:
-        return [[True, True] for i in range(var_num)]
+        return [[[True, True] for _ in range(var_num)]]
     # Cube list contains All-Don't-Cares Cube
-    elif [[True, True] for i in range(var_num)] in cubelist_f:
+    elif [[True, True] for _ in range(var_num)] in cubelist_f:
         return []
     # Cube list contains just one cube
     elif len(cubelist_f) == 1:
@@ -90,9 +80,7 @@ def Complement(cubelist_f, var_num):
         x = Select_most_binate_var(cubelist_f, var_num)
         cubelist_p = Complement(positiveCofactor(cubelist_f, x), var_num)
         cubelist_n = Complement(negativeCofactor(cubelist_f, x), var_num)
-        cubelist_p = and_x(x, cubelist_p)
-        cubelist_n = and_x_bar(x, cubelist_n)
-        return cubelist_p + cubelist_n
+        return and_x(x, cubelist_p) + and_x_bar(x, cubelist_n)
 
 def main():
     input_f = []
@@ -107,14 +95,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-    # Test DeMorgan_Laws
-    # a = DeMorgan_Laws([[[True, True], [False, True], [True, False], [False, True]]], 4)
-
-    # Test positiveCofactor/negativeCofactor
-    # a = positiveCofactor([[[False, True], [False, True], [True, True]], [[False, True], [True, True], [False, True]], [[False, True], [True, False], [True, False]], [[True, False], [True, True], [True, True]]], 0)
-    # a = negativeCofactor([[[False, True], [False, True], [True, True]], [[False, True], [True, True], [False, True]], [[False, True], [True, False], [True, False]], [[True, False], [True, True], [True, True]]], 0)
-
-    # print a
-    # for cube in a:
-    #     print ''.join([reversed_boolean_dict[tuple(i)] for i in cube])
