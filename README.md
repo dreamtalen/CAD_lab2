@@ -9,16 +9,16 @@ This program is implemented in Python 2.7. Since I don't use any libraries excep
 
 ## Usage
 ```shell
->>> Python compl.py <cube-list-file>
+>>> python compl.py <cube-list-file>
 ```
 
 ## Testing Example
 ```shell
->>> Python compl.py test1.in > mytest.out
+>>> python compl.py test1.in > mytest.out
 >>> diff mytest.out test1.out
 ```
 
 ## Running Example in Shell
 
-![running_example](https://github.com/dreamtalen/CAD_lab1/blob/master/shell_example.png)
+![running_example](https://github.com/dreamtalen/CAD_lab2/blob/master/shell_example.jpeg)
 
